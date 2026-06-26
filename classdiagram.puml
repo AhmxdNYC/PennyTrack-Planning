@@ -1,0 +1,53 @@
+@startuml
+!pragma layout smetana
+skinparam shadowing false
+skinparam classAttributeIconSize 0
+hide circle
+title Class Diagram — PennyTrack (Personal Expense Tracker)
+
+class User {
+  + id : int
+  + name : string
+  + addTransaction(t : Transaction) : void
+  + setBudget(b : Budget) : void
+}
+
+class Transaction {
+  + id : int
+  + amount : decimal
+  + date : date
+  + type : string
+  + note : string
+}
+
+class Category {
+  + id : int
+  + name : string
+}
+
+class Budget {
+  + id : int
+  + month : string
+  + limitAmount : decimal
+  + spent() : decimal
+  + isExceeded() : boolean
+}
+
+class ReportGenerator {
+  + monthlySummary(month : string) : Summary
+  + spendingByCategory(month : string) : Map
+}
+
+class BudgetMonitor {
+  + check(t : Transaction) : boolean
+  + alert(b : Budget) : void
+}
+
+User "1" --> "*" Transaction : records
+Transaction "*" --> "1" Category : classified as
+Category "1" --> "*" Budget : has
+ReportGenerator ..> Transaction : reads
+ReportGenerator ..> Category : groups by
+BudgetMonitor ..> Budget : evaluates
+BudgetMonitor ..> Transaction : checks
+@enduml

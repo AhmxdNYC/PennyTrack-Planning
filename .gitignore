@@ -1,0 +1,4 @@
+venv/
+plantuml.jar
+__pycache__/
+*.pyc
