@@ -203,7 +203,7 @@ for _ in range(8):
     doc.add_paragraph()
 t = doc.add_paragraph(); t.alignment = WD_ALIGN_PARAGRAPH.CENTER
 r = t.add_run(TITLE); r.bold = True; r.font.size = Pt(14)
-for line in [AUTHOR, AFFIL, COURSE, INSTRUCTOR, DATE]:
+for line in [AUTHOR, AFFIL, COURSE, DATE]:
     p = doc.add_paragraph(); p.alignment = WD_ALIGN_PARAGRAPH.CENTER; p.add_run(line)
 doc.add_page_break()
 
